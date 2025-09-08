@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "search-cli-pro"
-version = "0.1.0"
+version = "0.1.1"
 description = "A simple cross-platform CLI tool to search the web from your terminal"
 authors = [{ name = "Hrishikesh Tiwari", email ="tiwarihrishikesh686@gmail.com" }]
 readme = "README.md"
