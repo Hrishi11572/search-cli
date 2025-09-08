@@ -48,7 +48,7 @@ List supported search engines:
 # Platform notes
 
 - macOS : Supports custom browsers via -a
-- Liux : Tries given browser, falls back to default if not found
+- Linux : Tries given browser, falls back to default if not found
 - Windows : Opens in default browser (custom -a not supported yet)
 
 # Development
