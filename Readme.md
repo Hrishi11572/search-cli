@@ -1,8 +1,10 @@
-# search-cli
+# search-cli-pro
+
 A simple cross-platform CLI tool to search the web directly from your terminal.
 Supports multiple search engines and opens results in your favorite browser.
 
-# Features 
+# Features
+
 - Search across Google, Bing, DuckDuckGo, YouTube, Wikipedia, GitHub, Reddit, and StackOverflow.
 
 - Works on macOS, Linux, and Windows.
@@ -11,7 +13,7 @@ Supports multiple search engines and opens results in your favorite browser.
 
 - Lightweight and easy to use.
 
-# Installation 
+# Installation
 
         pip install search-cli
 
@@ -21,47 +23,46 @@ Or install directly from source:
         cd search-cli
         pip install -e .
 
-# Usage 
+# Usage
 
-Search google: 
+Search google:
 
          search google "What's the weather today?"
 
-Search Youtube: 
+Search Youtube:
 
-        search youtube "lofi hip hop beats" 
+        search youtube "lofi hip hop beats"
 
-Search wikipedia: 
+Search wikipedia:
 
-        search wikipedia "Python programming" 
+        search wikipedia "Python programming"
 
-
-Open with Safari (macOS): 
+Open with Safari (macOS):
 
         search google "machine learning" -a Safari
 
-List supported search engines: 
+List supported search engines:
 
-        search --list 
+        search --list
 
 # Platform notes
 
-- macOS : Supports custom browsers via -a 
+- macOS : Supports custom browsers via -a
 - Liux : Tries given browser, falls back to default if not found
 - Windows : Opens in default browser (custom -a not supported yet)
-  
-# Development 
 
-Clone the repo and install in editable mode: 
+# Development
+
+Clone the repo and install in editable mode:
 
         git clone https://github.com/Hrishi11572/search-cli.git
         cd search-cli
         pip install -e .
 
-Then run: 
+Then run:
 
-        search google "python argparse" 
+        search google "python argparse"
 
-# License 
+# License
 
-MIT License - free to use, modify and share 
+MIT License - free to use, modify and share
