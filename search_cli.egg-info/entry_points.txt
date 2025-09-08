@@ -1,2 +1,0 @@
-[console_scripts]
-search = searchcli.cli:main

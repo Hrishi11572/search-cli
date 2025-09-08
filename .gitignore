@@ -1,8 +1,7 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
 *.egg-info/
 dist/
 build/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store

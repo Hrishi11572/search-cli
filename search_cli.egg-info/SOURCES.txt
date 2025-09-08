@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-search_cli.egg-info/PKG-INFO
-search_cli.egg-info/SOURCES.txt
-search_cli.egg-info/dependency_links.txt
-search_cli.egg-info/entry_points.txt
-search_cli.egg-info/top_level.txt
-searchcli/__init__.py
-searchcli/cli.py
