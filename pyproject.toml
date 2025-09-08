@@ -3,10 +3,10 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "search-cli"
+name = "search-cli-pro"
 version = "0.1.0"
 description = "A simple cross-platform CLI tool to search the web from your terminal"
-authors = [{ name = "Your Name" }]
+authors = [{ name = "Hrishikesh Tiwari", email ="tiwarihrishikesh686@gmail.com" }]
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.7"
