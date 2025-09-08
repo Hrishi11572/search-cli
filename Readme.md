@@ -15,12 +15,12 @@ Supports multiple search engines and opens results in your favorite browser.
 
 # Installation
 
-        pip install search-cli
+        pip install search-cli-pro
 
 Or install directly from source:
 
-        git clone https://github.com/Hrishi11572/search-cli.git
-        cd search-cli
+        git clone https://github.com/Hrishi11572/search-cli-pro.git
+        cd search-cli-pro
         pip install -e .
 
 # Usage
@@ -55,8 +55,8 @@ List supported search engines:
 
 Clone the repo and install in editable mode:
 
-        git clone https://github.com/Hrishi11572/search-cli.git
-        cd search-cli
+        git clone https://github.com/Hrishi11572/search-cli-pro.git
+        cd search-cli-pro
         pip install -e .
 
 Then run:
