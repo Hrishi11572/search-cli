@@ -1,70 +1,99 @@
+# Standard library
 import argparse
-import urllib.parse 
-import subprocess 
+import urllib.parse
 import sys
-import webbrowser 
+import os
+import threading
 
+# Local imports
+from searchcli.engines import ENGINES
+from searchcli.utils import open_in_browser, is_browser_available
+from searchcli.search import ddg_search
+from searchcli.interactive import interactive_select, open_urls
+
+
+def clear_terminal():
+    if sys.platform.startswith("win"):
+        os.system("cls")
+    else:
+        os.system("clear")
 
 def main() : 
-    # first parser to catch --list
+    # ---------------------------
+    # First parser: handle --list
+    # ---------------------------
+    
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--list", action="store_true", help="List supported search engines")
     args, remaining = parser.parse_known_args()
     
-
-    # mapping the engine names to correct URL: 
-    engines = {
-        "google" : "https://www.google.com/search?q={q}",
-        "bing" : "https://www.bing.com/search?q={q}",
-        "duckduckgo" : "https://duckduckgo.com/?q={q}",
-        "youtube" : "https://www.youtube.com/results?search_query={q}",
-        "wikipedia" : "https://en.wikipedia.org/wiki/Special:Search?search={q}",
-        "stackoverflow" : "https://stackoverflow.com/search?q={q}",
-        "github": "https://github.com/search?q={q}",
-        "reddit": "https://www.reddit.com/search/?q={q}"
-    };  
-    
     if args.list:
         print("Supported search engines: ")
-        for e in engines: 
+        for e in ENGINES: 
             print(" -", e)
         sys.exit(0)
 
-    # second parser (only if not listing)
+    # ---------------------------
+    # Second parser: normal CLI
+    # ---------------------------
+    
     parser = argparse.ArgumentParser(description="A CLI package to search from terminal")
     parser.add_argument("engine" , help="Search engine (google, bing, duckduckgo)")
     parser.add_argument("query", help="The search query. For ex : `What's the weather today`")
     parser.add_argument("-a", "--app", help="The browser name (eg. Safari, Chrome, Firefox)")
+    parser.add_argument("-i", "--interactive", action="store_true", help="Interactive mode: preview and select multiple results (DuckDuckGo only)")
+
     args = parser.parse_args(remaining)
 
     q = urllib.parse.quote_plus(args.query)
     engine = args.engine.lower()
-
-    if engine not in engines: 
+    
+    # ---------------------------
+    # Pre-flight checks
+    # ---------------------------
+    
+    # Engine check 
+    if engine not in ENGINES: 
         print("Unsupported search engine")
         sys.exit(1)
+        
+    # Browser check 
+    if args.app and not is_browser_available(args.app):
+        print(f"Browser '{args.app}' not found on this system. Using default browser …")
+        args.app = None
+        
+    url = ENGINES[engine].format(q=q)
     
-    url = engines[engine].format(q=q)
+    # ---------------------------
+    # Interactive mode (DuckDuckGo)
+    # ---------------------------
     
-    # Handle browser opening -- cross platform 
-    if args.app: 
-        if sys.platform.startswith("darwin"): # macOS 
-            subprocess.run(["open", "-a", args.app, url])
-        elif sys.platform.startswith("linux"): 
-            try: 
-                subprocess.run([args.app.lower(), url])
-            except FileNotFoundError: 
-                print(f"Browser '{args.app}' not found. Opening in default browser ... ")
-                webbrowser.open(url)
-        elif sys.platform.startswith("win"): 
-            print("Custom browser (-a) not supported on windows. Opening in default browser ...")
-            webbrowser.open(url)
+    if args.interactive:
+        if engine != "duckduckgo":
+            print("Interactive mode is only supported with DuckDuckGo for now.")
+            open_in_browser(url, app=args.app)
+            timer = threading.Timer(1.0, clear_terminal)
+            timer.start()
+            sys.exit(0)
+        
+        # DuckDuckGo interactive menu 
+        clear_terminal()
+        results = ddg_search(args.query, n=5)
+        chosen = interactive_select(results, query=args.query)
+        if chosen:
+            open_urls(chosen, app=args.app)
+            timer = threading.Timer(1.0, clear_terminal)
+            timer.start()
         else:
-            print("Unknown Platform. Opening in default browser ...")
-            webbrowser.open(url)
-    else:
-        # default browser 
-        webbrowser.open(url)
-
+            print("No results selected.")
+        sys.exit(0)
+    
+    # ---------------------------
+    # Normal search
+    # ---------------------------
+    
+    open_in_browser(url, app=args.app)
+    timer = threading.Timer(1.25, clear_terminal)
+    timer.start()
 
    
