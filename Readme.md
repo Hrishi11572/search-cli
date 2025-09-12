@@ -2,7 +2,6 @@
 
 A simple cross-platform CLI tool to search the web directly from your terminal.
 Supports multiple search engines and opens results in your favorite browser.
-Supports multiple search engines, interactive preview for DuckDuckGo, and opens results in your favorite browser.
 
 # Features
 
