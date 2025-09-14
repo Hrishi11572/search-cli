@@ -71,7 +71,7 @@ def main() :
     if args.interactive:
         if engine_data["preview"] is None:
             print(f"Interactive preview is not supported for '{engine}'. Opening in browser instead …")
-            open_in_browser(url, args=args.app)
+            open_in_browser(url, app=args.app)
             timer = threading.Timer(1.0, clear_terminal)
             timer.start()
             sys.exit(0)
