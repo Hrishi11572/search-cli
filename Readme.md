@@ -7,7 +7,7 @@ Supports multiple search engines, interactive preview, and opens results in your
 
 - Search across Google, Bing, DuckDuckGo, YouTube, Wikipedia, GitHub, Reddit, StackOverflow, and more.
 
-- Interactive mode for DuckDuckGo: preview top results, select multiple links, and open them at once.
+- Interactive mode for DuckDuckGo, wikipedia, github , arxiv : preview top results, select multiple links, and open them at once.
   
 - Works on macOS, Linux, and Windows.
 
