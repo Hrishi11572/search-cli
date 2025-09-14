@@ -1,7 +1,7 @@
 # search-cli-pro
 
 A simple cross-platform CLI tool to search the web directly from your terminal.
-Supports multiple search engines and opens results in your favorite browser.
+Supports multiple search engines, interactive preview, and opens results in your favorite browser.
 
 # Features
 
@@ -45,7 +45,7 @@ Open with Safari (macOS):
 
         search google "machine learning" -a Safari
 
-Interactive mode (DuckDuckGo only)
+Interactive mode (DuckDuckGo , Wikipedia, Github , arxiv)
 
         search duckduckgo "python dataclasses" -i
 

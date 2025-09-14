@@ -8,7 +8,6 @@ import threading
 # Local imports
 from searchcli.engines import ENGINES
 from searchcli.utils import open_in_browser, is_browser_available
-from searchcli.search import ddg_search
 from searchcli.interactive import interactive_select, open_urls
 
 
@@ -62,23 +61,23 @@ def main() :
         print(f"Browser '{args.app}' not found on this system. Using default browser …")
         args.app = None
         
-    url = ENGINES[engine].format(q=q)
+    engine_data = ENGINES[engine]
+    url = engine_data["url"].format(q=q)
     
     # ---------------------------
     # Interactive mode (DuckDuckGo)
     # ---------------------------
     
     if args.interactive:
-        if engine != "duckduckgo":
-            print("Interactive mode is only supported with DuckDuckGo for now.")
-            open_in_browser(url, app=args.app)
+        if engine_data["preview"] is None:
+            print(f"Interactive preview is not supported for '{engine}'. Opening in browser instead …")
+            open_in_browser(url, args=args.app)
             timer = threading.Timer(1.0, clear_terminal)
             timer.start()
             sys.exit(0)
         
-        # DuckDuckGo interactive menu 
         clear_terminal()
-        results = ddg_search(args.query, n=5)
+        results = engine_data["preview"](args.query, n=5)
         chosen = interactive_select(results, query=args.query)
         if chosen:
             open_urls(chosen, app=args.app)

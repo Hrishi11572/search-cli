@@ -2,44 +2,118 @@
 mapping of engines to URLs. This file contains all the search engines 
 that are supported and their corresponding url formats as a dictionary 
 '''
+
+from searchcli.search import (
+    ddg_search,
+    wikipedia_search,
+    arxiv_search,
+    stackoverflow_search,
+    github_search,
+)
+
+
 ENGINES = {
-        # General search / news
-        "google" : "https://www.google.com/search?q={q}",
-        "bing" : "https://www.bing.com/search?q={q}",
-        "duckduckgo" : "https://duckduckgo.com/?q={q}",
-        "yahoo": "https://search.yahoo.com/search?p={q}",
-        "qwant": "https://www.qwant.com/?q={q}",  # privacy-focused search
+    # General search / news
+    "google": {
+        "url": "https://www.google.com/search?q={q}",
+        "preview": None
+    },
+    "bing": {
+        "url": "https://www.bing.com/search?q={q}",
+        "preview": None
+    },
+    "duckduckgo": {
+        "url": "https://duckduckgo.com/?q={q}",
+        "preview": ddg_search
+    },
+    "yahoo": {
+        "url": "https://search.yahoo.com/search?p={q}",
+        "preview": None
+    },
+    "qwant": {
+        "url": "https://www.qwant.com/?q={q}",
+        "preview": None
+    },
 
-        # Academic / scientific
-        "scholar": "https://scholar.google.com/scholar?q={q}",
-        "arxiv": "https://arxiv.org/search/?query={q}&searchtype=all",
-        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/?term={q}",
-        "wikipedia" : "https://en.wikipedia.org/wiki/Special:Search?search={q}",
+    # Academic / scientific
+    "scholar": {
+        "url": "https://scholar.google.com/scholar?q={q}",
+        "preview": None
+    },
+    "arxiv": {
+        "url": "https://arxiv.org/search/?query={q}&searchtype=all",
+        "preview": arxiv_search
+    },
+    "pubmed": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/?term={q}",
+        "preview": None
+    },
+    "wikipedia": {
+        "url": "https://en.wikipedia.org/wiki/Special:Search?search={q}",
+        "preview": wikipedia_search
+    },
 
+    # Shopping / marketplaces
+    "amazon": {
+        "url": "https://www.amazon.com/s?k={q}",
+        "preview": None
+    },
+    "ebay": {
+        "url": "https://www.ebay.com/sch/i.html?_nkw={q}",
+        "preview": None
+    },
 
-        # Shopping / marketplaces
-        "amazon": "https://www.amazon.com/s?k={q}",
-        "ebay": "https://www.ebay.com/sch/i.html?_nkw={q}",
-        
-        # Social media
-        "twitter": "https://twitter.com/search?q={q}",
-        "instagram": "https://www.instagram.com/explore/tags/{q}/",
-        
-        # Q&A / forums
-        "quora": "https://www.quora.com/search?q={q}",      
-        "reddit": "https://www.reddit.com/search/?q={q}",
-        
-        # Programming / dev
-        "pypi": "https://pypi.org/search/?q={q}",
-        "npm": "https://www.npmjs.com/search?q={q}",
-        "stackoverflow" : "https://stackoverflow.com/search?q={q}",
-        "github": "https://github.com/search?q={q}",
+    # Social media
+    "twitter": {
+        "url": "https://twitter.com/search?q={q}",
+        "preview": None
+    },
+    "instagram": {
+        "url": "https://www.instagram.com/explore/tags/{q}/",
+        "preview": None
+    },
 
-        # Maps / travel
-        "maps": "https://www.google.com/maps/search/{q}",
-        
-        # Video / streaming
-        "vimeo": "https://vimeo.com/search?q={q}",
-        "youtube" : "https://www.youtube.com/results?search_query={q}",
+    # Q&A / forums
+    "quora": {
+        "url": "https://www.quora.com/search?q={q}",
+        "preview": None
+    },
+    "reddit": {
+        "url": "https://www.reddit.com/search/?q={q}",
+        "preview": None
+    },
+
+    # Programming / dev
+    "pypi": {
+        "url": "https://pypi.org/search/?q={q}",
+        "preview": None
+    },
+    "npm": {
+        "url": "https://www.npmjs.com/search?q={q}",
+        "preview": None
+    },
+    "stackoverflow": {
+        "url": "https://stackoverflow.com/search?q={q}",
+        "preview": stackoverflow_search
+    },
+    "github": {
+        "url": "https://github.com/search?q={q}",
+        "preview": github_search
+    },
+
+    # Maps / travel
+    "maps": {
+        "url": "https://www.google.com/maps/search/{q}",
+        "preview": None
+    },
+
+    # Video / streaming
+    "vimeo": {
+        "url": "https://vimeo.com/search?q={q}",
+        "preview": None
+    },
+    "youtube": {
+        "url": "https://www.youtube.com/results?search_query={q}",
+        "preview": None
+    },
 }
-
